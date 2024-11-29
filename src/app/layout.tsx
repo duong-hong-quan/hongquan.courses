@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { url } from "inspector";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -17,6 +18,9 @@ import { Footer } from "@/components/footer";
 export const metadata: Metadata = {
   title: "HongQuan.Courses",
   description: "Học để đi làm",
+  icons: {
+    icon: [{ url: "/favicon.ico" }],
+  },
 };
 
 export default function RootLayout({
@@ -26,14 +30,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="icon"
-          href="/images/lewis-avt.jpg"
-          type="image/jpg"
-          sizes="32x32"
-        />
-      </head>
       <body>
         <Header />
 
