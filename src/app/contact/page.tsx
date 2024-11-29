@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,7 +12,6 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,10 +30,6 @@ export default function ContactPage() {
     // Reset form and show success message
     setFormData({ name: "", email: "", message: "" });
     setIsSubmitting(false);
-    toast({
-      title: "Message Sent",
-      description: "We've received your message and will get back to you soon.",
-    });
   };
 
   return (

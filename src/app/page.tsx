@@ -1,5 +1,4 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { HeroCarousel } from "@/components/HeroCarousel";
 import { motion } from "framer-motion";
 import data from "../data/mentor.json";
 import { Badge, CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
@@ -162,11 +160,11 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
                   <CardContent className="p-6">
-                    <p className="text-lg mb-4">"{testimonial?.testimonial}"</p>
+                    {/* <p className="text-lg mb-4">"{testimonial?.testimonial}"</p>
                     <p className="font-semibold">{testimonial?.name}</p>
                     <p className="text-sm text-gray-600">
                       {testimonial?.course}
-                    </p>
+                    </p> */}
                   </CardContent>
                 </MotionCard>
               ))}

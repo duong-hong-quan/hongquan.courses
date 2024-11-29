@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, Facebook, Phone } from "lucide-react";
+import { Github, Facebook } from "lucide-react";
 
 export function Footer() {
   return (
