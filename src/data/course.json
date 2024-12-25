@@ -8,8 +8,8 @@
       "price": 1000000,
       "instructor": "Hồng Quân (Lewis)",
       "duration": "8 tuần",
-      "startDate": "2024-03-01",
-      "endDate": "2024-04-26",
+      "startDate": "2025-03-01",
+      "endDate": "2025-03-26",
       "numOfStudents": 20,
       "syllabus": [
         "Giới thiệu về ReactJS và JSX",
@@ -28,13 +28,12 @@
       "title": "NextJS - Xây dựng giao diện ứng dụng web nâng cao",
       "description": "Xây dựng ứng dụng web hiện đại với NextJS",
       "image": "/images/course/nextjs.png",
-      "price": 1250000,
+      "price": 1200000,
       "instructor": "Nhật Hiệp (Chris)",
       "duration": "10 tuần",
-      "startDate": "2024-03-15",
-      "endDate": "2024-05-24",
+      "startDate": "2025-01-15",
+      "endDate": "2025-03-24",
       "numOfStudents": 20,
-
       "syllabus": [
         "Giới thiệu về NextJS và SSR (Server-side rendering)",
         "Tạo dự án NextJS cơ bản",
@@ -52,13 +51,12 @@
       "title": ".NET Core - Xây dựng app window cơ bản với WPF",
       "description": "Xây dựng app window chỉ trong 8 tuần",
       "image": "/images/course/netcore.png",
-      "price": 1999000,
+      "price": 1000000,
       "instructor": "Hồng Quân (Lewis)",
       "duration": "8 tuần",
-      "startDate": "2024-03-01",
-      "endDate": "2024-04-26",
+      "startDate": "2025-01-01",
+      "endDate": "2025-03-15",
       "numOfStudents": 20,
-
       "syllabus": [
         "Giới thiệu về .NET Core và WPF",
         "Xây dựng giao diện người dùng cơ bản",
@@ -76,13 +74,12 @@
       "title": ".NET Core - Xây dựng back end cơ bản với API",
       "description": "Xây dựng API chỉ trong 8 tuần",
       "image": "/images/course/netcore.png",
-      "price": 1500000,
+      "price": 1300000,
       "instructor": "Hồng Quân (Lewis)",
       "duration": "8 tuần",
-      "startDate": "2024-03-01",
-      "endDate": "2024-04-26",
+      "startDate": "2025-03-01",
+      "endDate": "2025-03-26",
       "numOfStudents": 20,
-
       "syllabus": [
         "Giới thiệu về .NET Core và API",
         "Tạo API RESTful với .NET Core",
@@ -103,10 +100,9 @@
       "price": 1699000,
       "instructor": "Hồng Quân (Lewis)",
       "duration": "8 tuần",
-      "startDate": "2024-03-01",
-      "endDate": "2024-04-26",
+      "startDate": "2025-01-01",
+      "endDate": "2025-03-26",
       "numOfStudents": 20,
-
       "syllabus": [
         "Kiến thức nâng cao về .NET Core",
         "Tạo API nâng cao với .NET Core",
@@ -124,13 +120,12 @@
       "title": "NestJS - Phát triển backend cơ bản",
       "description": "Phát triển backend mạnh mẽ với NestJS",
       "image": "/images/course/nestjs.png",
-      "price": 1750000,
+      "price": 1100000,
       "instructor": "Quang Hiển",
       "duration": "9 tuần",
-      "startDate": "2024-04-01",
-      "endDate": "2024-06-07",
+      "startDate": "2025-01-01",
+      "endDate": "2025-03-07",
       "numOfStudents": 20,
-
       "syllabus": [
         "Giới thiệu về NestJS và kiến trúc ứng dụng",
         "Xây dựng RESTful API với NestJS",
@@ -142,6 +137,75 @@
         "Dự án cuối cùng: Xây dựng ứng dụng backend với NestJS"
       ],
       "teacher": "Quang Hiển is a backend development specialist, with expertise in NestJS and building scalable backend applications."
+    },
+    {
+      "id": 7,
+      "title": "C Programming - Mastering the Fundamentals of C",
+      "description": "Learn and master the C programming language in 8 weeks",
+      "image": "/images/course/c.png",
+      "price": 1500000,
+      "instructor": "Hồng Quân (Lewis)",
+      "duration": "8 tuần",
+      "startDate": "2025-01-01",
+      "endDate": "2025-03-26",
+      "numOfStudents": 20,
+      "syllabus": [
+        "Giới thiệu về ngôn ngữ lập trình C và môi trường phát triển",
+        "Kiến thức cơ bản về biến, kiểu dữ liệu và toán tử trong C",
+        "Cấu trúc điều khiển: if, else, switch, và vòng lặp (for, while, do-while)",
+        "Hàm và cách sử dụng hàm trong C",
+        "Con trỏ và bộ nhớ động trong C",
+        "Cấu trúc dữ liệu cơ bản: Mảng, danh sách liên kết, và chuỗi",
+        "Quản lý bộ nhớ và xử lý lỗi trong C",
+        "Thực hành và xây dựng dự án cuối cùng bằng C"
+      ],
+      "teacher": "Hồng Quân (Lewis) is a senior software developer with extensive experience in C programming and low-level system development."
+    }
+  ],
+  "privateCourse": [
+    {
+      "id": 8,
+      "title": "Private Course - Lập trình C cá nhân",
+      "description": "Khóa học lập trình C theo yêu cầu riêng biệt, phù hợp với nhu cầu học viên.",
+      "image": "/images/course/c.png",
+      "price": "Liên hệ qua Facebook",
+      "instructor": "Hồng Quân (Lewis)",
+      "duration": "Linh hoạt",
+      "startDate": "2025-01-01",
+      "endDate": "2025-03-10",
+      "numOfStudents": "2-3",
+      "syllabus": [
+        "Giới thiệu về ngôn ngữ lập trình C và môi trường phát triển",
+        "Kiến thức cơ bản về biến, kiểu dữ liệu và toán tử trong C",
+        "Cấu trúc điều khiển và hàm trong C",
+        "Con trỏ và bộ nhớ động",
+        "Xử lý lỗi và quản lý bộ nhớ",
+        "Dự án thực hành theo yêu cầu học viên"
+      ],
+      "teacher": "Hồng Quân (Lewis) is a senior software developer with over 10 years of experience in C programming and teaching. Contact for a personalized learning experience tailored to your needs."
+    },
+    {
+      "id": 9,
+      "title": ".NET Core - Làm chủ .NET với API chuyên sâu",
+      "description": "Xây dựng chuyên sâu API chỉ trong 8 tuần",
+      "image": "/images/course/netcore.png",
+      "price": 1699000,
+      "instructor": "Hồng Quân (Lewis)",
+      "duration": "Linh hoạt",
+      "startDate": "2025-01-01",
+      "endDate": "2025-10-03",
+      "numOfStudents": "2-3",
+      "syllabus": [
+        "Kiến thức nâng cao về .NET Core",
+        "Tạo API nâng cao với .NET Core",
+        "Quản lý dữ liệu phức tạp với Entity Framework",
+        "Xử lý các yêu cầu và lỗi phức tạp",
+        "Tích hợp dịch vụ ngoài và giao tiếp giữa các API",
+        "Cải thiện bảo mật API và xử lý chứng thực",
+        "Tối ưu hóa hiệu suất API",
+        "Dự án cuối cùng: Xây dựng API chuyên sâu"
+      ],
+      "teacher": "Hồng Quân (Lewis) is a highly experienced .NET expert with deep knowledge in advanced backend development and API architecture."
     }
   ]
 }

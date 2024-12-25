@@ -1,4 +1,3 @@
-"use client";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -21,7 +20,9 @@ export default async function CourseDetailPage({
   console.log("Courses Data:", courses); // Log all courses data
 
   // Find the course synchronously
-  const course = courses.find((c) => c.id === parseInt(resolvedParams.id));
+  const course =
+    courses.find((c) => c.id === parseInt(resolvedParams.id)) ||
+    data.privateCourse.find((c) => c.id === parseInt(resolvedParams.id));
 
   if (!course) {
     notFound();
