@@ -12,9 +12,9 @@ import data from "../../data/mentor.json";
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className=" bg-white mx-auto px-10 py-8">
       <motion.h1
-        className="text-3xl font-bold mb-8"
+        className="text-3xl text-darkgreen font-bold mb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -28,7 +28,9 @@ export default function AboutPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          <h2 className="text-2xl font-semibold mb-4">Nhiệm vụ của chúng tớ</h2>
+          <h2 className="text-2xl text-darkgreen font-semibold mb-4">
+            Nhiệm vụ của chúng tớ
+          </h2>
           <p className="mb-4">
             Tại HongQuan.Course, chúng tôi tận tâm hỗ trợ các cá nhân có kỹ năng
             CNTT tiên tiến. Sứ mệnh của chúng tôi là thu hẹp khoảng cách giữa
@@ -38,11 +40,6 @@ export default function AboutPage() {
             công nghệ. Chúng tôi tin tưởng vào việc học tập thực hành, chương
             trình giảng dạy phù hợp với ngành và thúc đẩy một cộng đồng hỗ trợ
             gồm người học và mentor.
-          </p>
-          <p>
-            Chúng tôi tin vào việc học thực hành, chương trình giảng dạy phù hợp
-            với ngành và nuôi dưỡng một cộng đồng hỗ trợ của người học và các
-            mentor.
           </p>
         </motion.div>
         <motion.div
@@ -62,7 +59,7 @@ export default function AboutPage() {
       </div>
 
       <motion.h2
-        className="text-2xl font-semibold mb-6"
+        className="text-2xl text-darkgreen font-semibold mb-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}

@@ -3,14 +3,12 @@ import { Github, Facebook } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t py-8">
+    <footer className="bg-darkgreen text-white border-t py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div className="flex flex-col items-center md:items-start">
             <p className="text-lg font-semibold mb-2">HongQuan.Courses</p>
-            <p className="text-sm text-muted-foreground text-center md:text-left">
-              Học để đi làm
-            </p>
+            <p className="text-sm  text-center md:text-left">Học để đi làm</p>
           </div>
           <div className="flex flex-col items-center md:items-end">
             <div className="flex space-x-4 mb-4">
@@ -18,7 +16,7 @@ export function Footer() {
                 href="https://github.com/duong-hong-quan"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className=" hover:text-primary transition-colors"
               >
                 <Github size={24} />
                 <span className="sr-only">GitHub</span>
@@ -27,7 +25,7 @@ export function Footer() {
                 href="https://facebook.com/lewis.1921"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className=" hover:text-primary transition-colors"
               >
                 <Facebook size={24} />
                 <span className="sr-only">Facebook</span>
@@ -36,7 +34,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-muted text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm ">
             © {new Date().getFullYear()} HongQuan.Courses. All rights reserved.
           </p>
         </div>

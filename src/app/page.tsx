@@ -25,10 +25,10 @@ export default function Home() {
         <section className="  text-black ">{/* <HeroCarousel /> */}</section>
 
         {/* Mentor Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <motion.h2
-              className="text-4xl font-bold text-center mb-12 uppercase"
+              className="text-4xl font-bold  text-center mb-12 uppercase"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -39,7 +39,7 @@ export default function Home() {
               {data.mentor.map((mentor, index) => (
                 <MotionCard
                   key={index}
-                  className="overflow-hidden"
+                  className="overflow-hidden "
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -69,7 +69,7 @@ export default function Home() {
         </section>
 
         {/* Featured Courses Section */}
-        <section className="py-20">
+        <section className="py-20 bg-white ">
           <div className="container mx-auto px-4">
             <motion.h2
               className="text-4xl font-bold text-center mb-12 uppercase"
@@ -88,7 +88,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.2 }}
                 >
-                  <CardHeader className="p-0">
+                  <CardHeader className="p-2">
                     <div className="relative h-48 w-full">
                       <Image
                         src={course.image}
@@ -130,7 +130,7 @@ export default function Home() {
                     <Badge className="text-lg font-semibold">
                       {course.price.toLocaleString("vi-VN")} ₫
                     </Badge>
-                    <Button asChild>
+                    <Button asChild className="bg-darkgreen text-white">
                       <Link href={`/courses/${course.id}`}>Tìm hiểu thêm</Link>
                     </Button>
                   </CardFooter>
@@ -144,7 +144,7 @@ export default function Home() {
         <section className="py-20 bg-gray-100">
           <div className="container mx-auto px-4">
             <motion.h2
-              className="text-4xl font-bold text-center mb-12"
+              className="text-4xl font-bold text-center mb-12 "
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -173,7 +173,7 @@ export default function Home() {
         </section>
 
         {/* Call to Action */}
-        <section className="bg-gradient-to-r  text-black py-20">
+        <section className="bg-darkgreen  text-white py-20">
           <div className="container mx-auto px-4 text-center">
             <motion.h2
               className="text-4xl font-bold mb-4"

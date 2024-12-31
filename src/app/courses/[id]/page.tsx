@@ -30,13 +30,15 @@ export default async function CourseDetailPage({
 
   // Return the course details JSX
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">{course.title}</h1>
+    <div className="  px-10 py-8 bg-white ">
+      <h1 className="text-3xl text-darkgreen font-bold mb-8">{course.title}</h1>
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <Card>
             <CardHeader>
-              <CardTitle>Mô tả khoá học</CardTitle>
+              <CardTitle className="text-darkgreen font-bold">
+                Mô tả khoá học
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p>{course.description}</p>
@@ -44,7 +46,9 @@ export default async function CourseDetailPage({
           </Card>
           <Card className="mt-8">
             <CardHeader>
-              <CardTitle>Chương trình</CardTitle>
+              <CardTitle className="text-darkgreen font-bold">
+                Chương trình
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <ol className="list-decimal list-inside">
@@ -84,10 +88,12 @@ export default async function CourseDetailPage({
               <p>
                 <strong>Số lượng học viên:</strong> {course.numOfStudents}/ lớp
               </p>
-              <Button className="w-full">Enroll Now</Button>
+              <Button className="w-full bg-darkgreen text-white">
+                Tham gia ngay
+              </Button>
             </CardContent>
           </Card>
-          <Card className="mt-8">
+          <Card className="mt-8 text-darkgreen">
             <CardHeader>
               <CardTitle>Mentor</CardTitle>
             </CardHeader>

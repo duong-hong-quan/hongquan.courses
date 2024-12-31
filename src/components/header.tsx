@@ -21,7 +21,7 @@ export function Header() {
         <Link
           key={link.href}
           href={link.href}
-          className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary"
+          className="flex items-center text-sm font-medium text-darkgreen md:text-white"
           onClick={() => setIsOpen(false)}
         >
           {link.label}
@@ -31,27 +31,35 @@ export function Header() {
   );
 
   return (
-    <header className="bg-background sticky top-0 z-40 w-full border-b">
+    <header className="bg-darkgreen text-white sticky top-0 z-40 w-full border-b">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="inline-block font-bold">HongQuan.Courses</span>
+          <Link href="/" className="flex items-center space-x-2 ">
+            <span className="inline-block font-bold text-white">
+              HongQuan.Courses
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex md:gap-6">
+          <nav className="hidden text-darkgreen md:flex md:gap-6">
             <NavLinks />
           </nav>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex text-white items-center space-x-4">
             <div className="hidden md:block">
-              <Link href={"/login"}>Đăng nhập</Link>
+              <Link className="text-white" href={"/login"}>
+                Đăng nhập
+              </Link>
             </div>
 
             {/* Mobile Navigation */}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
-                <Button variant="outline" size="icon" className="md:hidden">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="md:hidden text-white bg-darkgreen"
+                >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
