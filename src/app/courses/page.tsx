@@ -18,10 +18,10 @@ const privateCourses = data.privateCourse; // Assuming private courses are in th
 
 export default function CoursesPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className=" mx-auto px-10 bg-white py-8">
       {/* Regular Courses Section */}
       <motion.h1
-        className="text-3xl text-center uppercase font-bold mb-8"
+        className="text-3xl text-darkgreen text-center uppercase font-bold mb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -60,7 +60,7 @@ export default function CoursesPage() {
                 <p>{course.numOfStudents} sinh viên/ lớp</p>
               </CardContent>
               <CardFooter>
-                <Button asChild>
+                <Button className="bg-darkgreen text-white" asChild>
                   <Link href={`/courses/${course.id}`}>Xem chi tiết</Link>
                 </Button>
               </CardFooter>
@@ -71,7 +71,7 @@ export default function CoursesPage() {
 
       {/* Private Courses Section */}
       <motion.h2
-        className="text-2xl text-center uppercase font-bold mt-12 mb-8"
+        className="text-2xl text-darkgreen text-center uppercase font-bold mt-12 mb-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
