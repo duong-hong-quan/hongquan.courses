@@ -33,7 +33,7 @@ export default function RootLayout({
       <body>
         <Header />
 
-        <div className="bg-darkgreen flex min-h-screen flex-col px-10 py-8">
+        <div className="bg-darkgreen flex min-h-screen flex-col md:px-10 md:py-8">
           {children}
         </div>
         <Footer />
