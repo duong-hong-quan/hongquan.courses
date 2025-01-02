@@ -62,7 +62,7 @@ export default function CoursesPage() {
                   <div className="space-y-3">
                     <div className="flex items-center text-gray-700">
                       <UserIcon className="w-5 h-5 mr-2 text-darkgreen" />
-                      <span>{course.instructor}</span>
+                      <span>{course.mentor.name}</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <ClockIcon className="w-5 h-5 mr-2 text-darkgreen" />
@@ -130,7 +130,7 @@ export default function CoursesPage() {
                   <div className="space-y-3">
                     <div className="flex items-center text-gray-700">
                       <UserIcon className="w-5 h-5 mr-2 text-darkgreen" />
-                      <span>{course.instructor}</span>
+                      <span>{course.mentor.name}</span>
                     </div>
                     <div className="flex items-center text-gray-700">
                       <ClockIcon className="w-5 h-5 mr-2 text-darkgreen" />

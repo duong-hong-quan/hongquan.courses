@@ -108,7 +108,7 @@ export default async function CourseDetailPage({
                 {course.endDate}
               </p>
               <p className="text-gray-700">
-                <strong>Mentor:</strong> {course.instructor}
+                <strong>Mentor:</strong> {course.mentor.name}
               </p>
               <p className="text-gray-700">
                 <strong>Số lượng học viên:</strong> {course.numOfStudents}/ lớp
@@ -129,7 +129,7 @@ export default async function CourseDetailPage({
               <div className="flex items-center space-x-4">
                 <Image
                   src={course.mentor.image}
-                  alt={course.instructor}
+                  alt={course.mentor.name}
                   width={64}
                   height={64}
                   className="rounded-full"
