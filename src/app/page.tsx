@@ -10,136 +10,185 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import data from "../data/mentor.json";
-import { Badge, CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
+import {
+  Badge,
+  CalendarIcon,
+  ChevronLeft,
+  ChevronRight,
+  ClockIcon,
+  UserIcon,
+} from "lucide-react";
 const MotionCard = motion(Card);
 const MotionImage = motion(Image);
 import dataCourse from "../data/course.json";
+import { useEffect, useState } from "react";
 export default function Home() {
   const courses = dataCourse.courses;
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % data.mentor.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + data.mentor.length) % data.mentor.length
+    );
+  };
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000); // Auto-advance every 5 seconds
+    return () => clearInterval(timer);
+  }, []);
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="mx-auto px-10 py-8">
       <main className="flex-grow">
         {/* Hero Section with Carousel */}
-        <section className="  text-black ">{/* <HeroCarousel /> */}</section>
-
-        {/* Mentor Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
-            <motion.h2
-              className="text-4xl font-bold  text-center mb-12 uppercase"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+        <div className=" w-full h-screen ">
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
+              className="flex items-center justify-center h-full"
             >
-              Gặp gỡ các mentor của chúng tôi
-            </motion.h2>
-            <div className="grid md:grid-cols-3 gap-12">
-              {data.mentor.map((mentor, index) => (
-                <MotionCard
-                  key={index}
-                  className="overflow-hidden "
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
-                >
-                  <CardHeader>
-                    <CardTitle>{mentor.name}</CardTitle>
-                    <CardDescription>{mentor.role}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="mb-4 h-64 w-64 mx-auto relative overflow-hidden rounded-full">
-                      <MotionImage
-                        src={mentor.image}
-                        alt={mentor.name}
-                        width={256}
-                        height={256}
-                        objectFit="contain"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </div>
-                    <p>{mentor.description}</p>
-                  </CardContent>
-                </MotionCard>
-              ))}
-            </div>
-          </div>
-        </section>
+              <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+                <div className="w-full md:w-1/2 text-white pr-8">
+                  <motion.h2
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.5 }}
+                    className="text-4xl font-bold mb-4"
+                  >
+                    {data.mentor[currentIndex].name}
+                  </motion.h2>
+                  <motion.p
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                    className="text-xl mb-4"
+                  >
+                    {data.mentor[currentIndex].role}
+                  </motion.p>
+                  <motion.p
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                    className="text-lg"
+                  >
+                    {data.mentor[currentIndex].description}
+                  </motion.p>
+                </div>
+                <div className="w-full md:w-1/2 mt-8 md:mt-0">
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                  >
+                    <img
+                      src={data.mentor[currentIndex].image}
+                      alt={data.mentor[currentIndex].name}
+                      className="w-full max-h-[650px]"
+                    />
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 focus:outline-none"
+          >
+            <ChevronLeft className="w-6 h-6 text-dark-green" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 focus:outline-none"
+          >
+            <ChevronRight className="w-6 h-6 text-dark-green" />
+          </button>
+        </div>
 
-        {/* Featured Courses Section */}
-        <section className="py-20 bg-white ">
+        <section className="py-24 bg-gradient-to-b from-white to-gray-100">
           <div className="container mx-auto px-4">
             <motion.h2
-              className="text-4xl font-bold text-center mb-12 uppercase"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-5xl font-bold text-center mb-16 text-gray-800"
+              initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               Các khóa học nổi bật
             </motion.h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
               {courses.map((course, index) => (
-                <MotionCard
-                  key={index}
-                  className="flex flex-col"
+                <motion.div
+                  key={course.id}
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <CardHeader className="p-2">
-                    <div className="relative h-48 w-full">
-                      <Image
-                        src={course.image}
-                        alt={course.title}
-                        layout="fill"
-                        objectFit="cover"
-                      />
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-grow p-6">
-                    <CardTitle className="text-xl mb-2">
-                      {course.title}
-                    </CardTitle>
-                    <CardDescription className="mb-4">
-                      {course.description}
-                    </CardDescription>
-                    <div className="space-y-2">
-                      <div className="flex items-center">
-                        <UserIcon className="w-4 h-4 mr-2" />
-                        <span className="text-sm">{course.instructor}</span>
+                  <Card className="h-full flex flex-col overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                    <CardHeader className="p-0">
+                      <div className="relative h-60 w-full">
+                        <Image
+                          src={course.image}
+                          alt={course.title}
+                          layout="fill"
+                          objectFit="cover"
+                          className="transition-transform duration-300 hover:scale-105"
+                        />
                       </div>
-                      <div className="flex items-center">
-                        <ClockIcon className="w-4 h-4 mr-2" />
-                        <span className="text-sm">{course.duration}</span>
+                    </CardHeader>
+                    <CardContent className="flex-grow p-6">
+                      <CardTitle className="text-2xl font-bold mb-3 text-gray-800">
+                        {course.title}
+                      </CardTitle>
+                      <CardDescription className="mb-4 text-gray-600">
+                        {course.description}
+                      </CardDescription>
+                      <div className="space-y-3">
+                        <div className="flex items-center text-gray-700">
+                          <UserIcon className="w-5 h-5 mr-2 text-darkgreen" />
+                          <span>{course.instructor}</span>
+                        </div>
+                        <div className="flex items-center text-gray-700">
+                          <ClockIcon className="w-5 h-5 mr-2 text-darkgreen" />
+                          <span>{course.duration}</span>
+                        </div>
+                        <div className="flex items-center text-gray-700">
+                          <CalendarIcon className="w-5 h-5 mr-2 text-darkgreen" />
+                          <span>
+                            {new Date(course.startDate).toLocaleDateString(
+                              "vi-VN"
+                            )}{" "}
+                            -{" "}
+                            {new Date(course.endDate).toLocaleDateString(
+                              "vi-VN"
+                            )}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <CalendarIcon className="w-4 h-4 mr-2" />
-                        <span className="text-sm">
-                          {new Date(course.startDate).toLocaleDateString(
-                            "vi-VN"
-                          )}{" "}
-                          -{" "}
-                          {new Date(course.endDate).toLocaleDateString("vi-VN")}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex justify-between items-center p-6 bg-gray-50">
-                    <Badge className="text-lg font-semibold">
-                      {course.price.toLocaleString("vi-VN")} ₫
-                    </Badge>
-                    <Button asChild className="bg-darkgreen text-white">
-                      <Link href={`/courses/${course.id}`}>Tìm hiểu thêm</Link>
-                    </Button>
-                  </CardFooter>
-                </MotionCard>
+                    </CardContent>
+                    <CardFooter className="flex justify-between items-center p-6 bg-gray-50">
+                      <Button
+                        asChild
+                        className="bg-darkgreen text-white hover:bg-darkgreen/90 transition-colors duration-300"
+                      >
+                        <Link href={`/courses/${course.id}`}>
+                          Tìm hiểu thêm
+                        </Link>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
-
         {/* Testimonial Section */}
         <section className="py-20 bg-gray-100">
           <div className="container mx-auto px-4">

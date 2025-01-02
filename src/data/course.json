@@ -21,7 +21,12 @@
         "Tối ưu hóa hiệu suất trong React",
         "Thực hành và xây dựng dự án cuối cùng"
       ],
-      "teacher": "Hồng Quân (Lewis) is a senior web developer with extensive experience in ReactJS and front-end development."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     },
     {
       "id": 2,
@@ -44,7 +49,12 @@
         "Kết nối với cơ sở dữ liệu và API",
         "Dự án cuối cùng với NextJS"
       ],
-      "teacher": "Nhật Hiệp (Chris) is an expert in NextJS and full-stack development, specializing in modern JavaScript frameworks."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     },
     {
       "id": 3,
@@ -67,7 +77,12 @@
         "Tích hợp các dịch vụ bên ngoài với WPF",
         "Dự án cuối cùng: Xây dựng ứng dụng WPF đầy đủ"
       ],
-      "teacher": "Hồng Quân (Lewis) is an expert in .NET development and has been creating Windows applications for over 8 years."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     },
     {
       "id": 4,
@@ -90,7 +105,12 @@
         "Tối ưu hóa API với các công cụ .NET Core",
         "Dự án cuối cùng: Xây dựng API RESTful"
       ],
-      "teacher": "Hồng Quân (Lewis) specializes in .NET Core development and backend architecture, with years of experience in building scalable APIs."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     },
     {
       "id": 5,
@@ -113,7 +133,12 @@
         "Tối ưu hóa hiệu suất API",
         "Dự án cuối cùng: Xây dựng API chuyên sâu"
       ],
-      "teacher": "Hồng Quân (Lewis) is a highly experienced .NET expert with deep knowledge in advanced backend development and API architecture."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     },
     {
       "id": 6,
@@ -136,7 +161,12 @@
         "Test và bảo trì ứng dụng NestJS",
         "Dự án cuối cùng: Xây dựng ứng dụng backend với NestJS"
       ],
-      "teacher": "Quang Hiển is a backend development specialist, with expertise in NestJS and building scalable backend applications."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     },
     {
       "id": 7,
@@ -159,7 +189,12 @@
         "Quản lý bộ nhớ và xử lý lỗi trong C",
         "Thực hành và xây dựng dự án cuối cùng bằng C"
       ],
-      "teacher": "Hồng Quân (Lewis) is a senior software developer with extensive experience in C programming and low-level system development."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     }
   ],
   "privateCourse": [
@@ -182,7 +217,12 @@
         "Xử lý lỗi và quản lý bộ nhớ",
         "Dự án thực hành theo yêu cầu học viên"
       ],
-      "teacher": "Hồng Quân (Lewis) is a senior software developer with over 10 years of experience in C programming and teaching. Contact for a personalized learning experience tailored to your needs."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     },
     {
       "id": 9,
@@ -205,7 +245,12 @@
         "Tối ưu hóa hiệu suất API",
         "Dự án cuối cùng: Xây dựng API chuyên sâu"
       ],
-      "teacher": "Hồng Quân (Lewis) is a highly experienced .NET expert with deep knowledge in advanced backend development and API architecture."
+      "mentor": {
+        "name": "Hồng Quân (Lewis)",
+        "role": "Người sáng lập & Mentor chính",
+        "image": "/images/lewis-avt.jpg",
+        "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
+      }
     }
   ]
 }
