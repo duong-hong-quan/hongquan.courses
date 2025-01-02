@@ -11,9 +11,9 @@ import ClassSchedule from "@/components/ClassSchedule";
 import StudentReviews from "@/components/StudentReviews";
 
 type CourseDetailPageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export default async function CourseDetailPage({
