@@ -20,7 +20,9 @@ export default async function CourseDetailPage({
   params,
 }: CourseDetailPageProps) {
   const courses = [...data.courses, ...data.privateCourse];
-  const course = courses.find((c) => c.id === parseInt(params.id));
+  const course = courses.find(
+    async (c) => c.id === parseInt((await params).id)
+  );
 
   if (!course) {
     notFound();
