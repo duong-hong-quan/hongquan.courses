@@ -10,6 +10,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
+    { href: "/", label: "Trang chủ" },
     { href: "/courses", label: "Khoá học" },
     { href: "/about", label: "Giới thiệu" },
     { href: "/contact", label: "Liên hệ" },
@@ -35,9 +36,7 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2 ">
-            <span className="inline-block font-bold text-white">
-              HongQuan.Courses
-            </span>
+            <span className="inline-block font-bold text-white">Mon.Edu</span>
           </Link>
 
           {/* Desktop Navigation */}
