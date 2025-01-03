@@ -46,7 +46,7 @@ export default function Home() {
     <div className="mx-auto px-10 py-8">
       <main className="flex-grow">
         {/* Hero Section with Carousel */}
-        <div className=" w-full h-screen ">
+        <div className=" w-full   py-4 ">
           <AnimatePresence mode="sync">
             <motion.div
               key={currentIndex}
@@ -54,7 +54,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center justify-center h-full"
+              className="flex items-center justify-center"
             >
               <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
                 <div className="w-full md:w-1/2 text-white pr-8">
@@ -92,7 +92,7 @@ export default function Home() {
                     <img
                       src={data.mentor[currentIndex].image}
                       alt={data.mentor[currentIndex].name}
-                      className="w-full max-h-[650px]"
+                      className="w-full max-h-[650px] object-contain"
                     />
                   </motion.div>
                 </div>
@@ -133,13 +133,11 @@ export default function Home() {
                 >
                   <Card className="h-full flex flex-col overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                     <CardHeader className="p-0">
-                      <div className="relative h-60 w-full">
-                        <Image
+                      <div className=" w-full">
+                        <img
                           src={course.image}
                           alt={course.title}
-                          layout="fill"
-                          objectFit="cover"
-                          className="transition-transform duration-300 hover:scale-105"
+                          className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
                         />
                       </div>
                     </CardHeader>
