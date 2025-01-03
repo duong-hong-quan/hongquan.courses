@@ -29,7 +29,7 @@ export default async function CourseDetailPage({
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 bg-gray-50">
+    <div className="container mx-auto md:px-4 py-8 bg-gray-50">
       <h1 className="text-4xl text-darkgreen font-bold mb-8">{course.title}</h1>
       <div className="grid lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">

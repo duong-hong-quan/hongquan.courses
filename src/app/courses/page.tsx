@@ -19,7 +19,7 @@ const privateCourses = data.privateCourse; // Assuming private courses are in th
 
 export default function CoursesPage() {
   return (
-    <div className=" mx-auto px-10 bg-white py-8">
+    <div className=" mx-auto md:px-10 bg-white py-8">
       {/* Regular Courses Section */}
       <motion.h1
         className="text-3xl text-darkgreen text-center uppercase font-bold mb-8"

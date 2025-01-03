@@ -43,7 +43,7 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="mx-auto px-10 py-8">
+    <div className="mx-auto md:px-10 py-8">
       <main className="flex-grow">
         {/* Hero Section with Carousel */}
         <div className=" w-full   py-4 ">
