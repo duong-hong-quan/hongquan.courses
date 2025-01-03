@@ -43,20 +43,16 @@ export default function Home() {
     return () => clearInterval(timer);
   }, []);
   return (
-    <div className="mx-auto md:px-10 py-8">
+    <div className="min-h-screen mx-auto md:px-10 py-8">
       <main className="flex-grow">
         {/* Hero Section with Carousel */}
         <div className=" w-full   py-4 ">
-          <AnimatePresence mode="sync">
+          <div>
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
               className="flex items-center justify-center"
             >
-              <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
+              <div className=" mx-auto px-4 flex flex-col md:flex-row items-center">
                 <div className="w-full md:w-1/2 text-white pr-8">
                   <motion.h2
                     initial={{ y: 20, opacity: 0 }}
@@ -83,22 +79,19 @@ export default function Home() {
                     {data.mentor[currentIndex].description}
                   </motion.p>
                 </div>
-                <div className="w-full md:w-1/2 mt-8 md:mt-0">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                  >
+                <div className="w-full md:w-1/2 mt-8 md:mt-0 h-96">
+                  <motion.div className="h-96">
                     <img
                       src={data.mentor[currentIndex].image}
                       alt={data.mentor[currentIndex].name}
-                      className="w-full max-h-[650px] object-contain"
+                      height={500}
+                      className="w-full h-full object-contain"
                     />
                   </motion.div>
                 </div>
               </div>
             </motion.div>
-          </AnimatePresence>
+          </div>
           <button
             onClick={prevSlide}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2 focus:outline-none"
