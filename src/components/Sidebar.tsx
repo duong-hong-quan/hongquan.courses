@@ -15,9 +15,11 @@ export function Sidebar({
   onSelectTopic,
 }: SidebarProps) {
   return (
-    <div className="w-64 bg-[#0a2422] p-4 rounded-3xl">
-      <h2 className="text-xl font-bold mb-4 text-white">Topics</h2>
-      <ScrollArea className="h-[calc(100vh-8rem)]">
+    <div className="w-full lg:w-64 bg-[#0a2422] p-4 rounded-lg lg:rounded-3xl lg:flex-shrink-0 lg:overflow-auto">
+      <h2 className="text-xl font-bold mb-4 text-white text-center lg:text-left">
+        Topics
+      </h2>
+      <ScrollArea className="h-fit">
         {Object.keys(structure).map((topic) => (
           <Button
             key={topic}

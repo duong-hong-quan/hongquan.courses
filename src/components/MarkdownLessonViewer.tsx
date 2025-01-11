@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm"; // Hỗ trợ bảng, danh sách công việc, v.v.
+import remarkGfm from "remark-gfm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sidebar } from "./Sidebar";
 import { MarkdownStructure } from "@/lib/getMarkdownStructure";
@@ -65,14 +65,14 @@ export default function MarkdownLessonViewer({
   };
 
   return (
-    <div className="flex min-h-screen bg-[#0a2422] p-4 rounded-3xl text-white">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#0a2422] text-white">
       <Sidebar
         structure={structure}
         selectedTopic={selectedTopic}
         onSelectTopic={setSelectedTopic}
       />
-      <div className="flex-1 p-8 overflow-auto">
-        <h1 className="text-3xl font-bold mb-6 text-center uppercase">
+      <div className="flex-1 p-4 lg:p-8 overflow-auto">
+        <h1 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6 text-center uppercase">
           {selectedTopic}
         </h1>
         {error ? (
@@ -82,8 +82,8 @@ export default function MarkdownLessonViewer({
         ) : (
           <div>
             {/* Hiển thị bài học hiện tại */}
-            <Card className="mb-8 bg-[#0a2422] border-white/10 max-h-screen overflow-y-scroll">
-              <CardContent className="p-6">
+            <Card className="mb-8 bg-[#0a2422] border-white/10 max-h-screen overflow-y-auto rounded-lg">
+              <CardContent className="p-4 lg:p-6">
                 <div className="prose prose-invert max-w-none">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {lessons[currentLessonIndex]}
@@ -93,28 +93,28 @@ export default function MarkdownLessonViewer({
             </Card>
 
             {/* Nút điều hướng */}
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between items-center mt-4">
               <button
                 onClick={goToPreviousLesson}
                 disabled={currentLessonIndex === 0}
-                className={`px-4 py-2 rounded-lg ${
+                className={`px-4 py-2 rounded-lg text-sm ${
                   currentLessonIndex === 0
                     ? "bg-gray-500 cursor-not-allowed"
-                    : "bg-darkgreen hover:bg-green-700"
+                    : "bg-green-600 hover:bg-green-700"
                 }`}
               >
                 Previous
               </button>
-              <span>
+              <span className="text-sm lg:text-base">
                 Lesson {currentLessonIndex + 1} of {lessons.length}
               </span>
               <button
                 onClick={goToNextLesson}
                 disabled={currentLessonIndex === lessons.length - 1}
-                className={`px-4 py-2 rounded-lg ${
+                className={`px-4 py-2 rounded-lg text-sm ${
                   currentLessonIndex === lessons.length - 1
                     ? "bg-gray-500 cursor-not-allowed"
-                    : "bg-darkgreen hover:bg-green-700"
+                    : "bg-green-600 hover:bg-green-700"
                 }`}
               >
                 Next
