@@ -50,7 +50,6 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error in markdown API route:", error);
     return NextResponse.json(
-      { error: `Server error: ${error.message}` },
       { status: 500 }
     );
   }

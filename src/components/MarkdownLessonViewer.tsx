@@ -48,7 +48,6 @@ export default function MarkdownLessonViewer({
         setLessons(lessonContents);
       } catch (err) {
         console.error("Error fetching lessons:", err);
-        setError(`Failed to load lessons: ${err.message}`);
       }
     };
 
