@@ -18,7 +18,6 @@ export default function MarkdownLessonViewer({
   const [lessons, setLessons] = useState<string[]>([]);
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0); // Trạng thái bài học hiện tại
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     const fetchLessons = async () => {
       setError(null);
@@ -72,9 +71,6 @@ export default function MarkdownLessonViewer({
         onSelectTopic={setSelectedTopic}
       />
       <div className="flex-1 p-4 lg:p-8 overflow-auto">
-        <h1 className="text-2xl lg:text-3xl font-bold mb-4 lg:mb-6 text-center uppercase">
-          {selectedTopic}
-        </h1>
         {error ? (
           <p className="text-red-500">{error}</p>
         ) : lessons.length === 0 ? (
