@@ -27,7 +27,7 @@ export default function MarkdownLessonViewer({
         const lessonContents = await Promise.all(
           structure[selectedTopic].map(async (lesson) => {
             const response = await fetch(
-              `/api/markdown?topic=${encodeURIComponent(
+              `/src/data/markdown?topic=${encodeURIComponent(
                 selectedTopic
               )}&lesson=${encodeURIComponent(lesson)}`
             );

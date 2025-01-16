@@ -6,7 +6,7 @@ export interface MarkdownStructure {
 }
 
 export function getMarkdownStructure(): MarkdownStructure {
-  const markdownDir = path.join(process.cwd(), "src/app/api/markdown");
+  const markdownDir = path.join(process.cwd(), "src/data/markdown");
 
   if (!fs.existsSync(markdownDir)) {
     console.error(`Markdown directory not found: ${markdownDir}`);

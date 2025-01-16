@@ -14,7 +14,6 @@ export function Header() {
     { href: "/courses", label: "Khoá học" },
     { href: "/about", label: "Giới thiệu" },
     { href: "/contact", label: "Liên hệ" },
-    { href: "/blog", label: "Tài liệu" },
   ];
 
   const NavLinks = () => (
