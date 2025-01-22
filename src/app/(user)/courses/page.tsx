@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import data from "../../data/course.json";
+import data from "@/data/course.json";
 import Image from "next/image";
 import { CalendarIcon, ClockIcon, UserIcon } from "lucide-react";
 

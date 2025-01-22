@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { StarIcon } from "lucide-react";
-import data from "../../../data/course.json";
+import data from "@/data/course.json";
 import ClassSchedule from "@/components/ClassSchedule";
 import StudentReviews from "@/components/StudentReviews";
 

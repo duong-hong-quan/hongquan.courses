@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import data from "../../data/mentor.json";
+import data from "@/data/mentor.json";
 
 export default function AboutPage() {
   return (

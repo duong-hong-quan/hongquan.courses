@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { url } from "inspector";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -26,8 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <div>
+      <Header />
+
+      <div className=" flex min-h-screen flex-col ">{children}</div>
+      <Footer />
+    </div>
   );
 }

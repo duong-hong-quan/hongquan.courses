@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { AnimatePresence, motion } from "framer-motion";
-import data from "../data/mentor.json";
+import data from "@/data/mentor.json";
 import {
   Badge,
   CalendarIcon,
@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 const MotionCard = motion(Card);
 const MotionImage = motion(Image);
-import dataCourse from "../data/course.json";
+import dataCourse from "../../data/course.json";
 import { useEffect, useState } from "react";
 export default function Home() {
   const courses = dataCourse.courses;
