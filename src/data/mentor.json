@@ -5,12 +5,6 @@
       "role": "Người sáng lập & Mentor chính",
       "image": "/images/lewis-avt.jpg",
       "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Fullstack Developer, Lewis đã tham gia vào nhiều dự án thực tế và đam mê chia sẻ kiến thức của mình với mọi người. Công nghệ Lewis sử dụng bao gồm .NET Core, NestJS, Java, ReactJS, NextJS."
-    },
-    {
-      "name": "Quang Hiển",
-      "role": "Mentor",
-      "image": "/images/hien-avt.png",
-      "description": "Với hơn 1.5 năm kinh nghiệm với vai trò Front End Developer (ReactJS/NextJS/NestJS), Hiển chuyên về phát triển web và ứng dụng fullstack sử dụng các công nghệ như ReactJS, NextJS, và NestJS."
     }
    
   ]
