@@ -107,7 +107,7 @@ export default function Home() {
         <main className="flex-grow">
           {/* Hero Section with Carousel */}
 
-          <section className="py-24 bg-gradient-to-b from-white to-gray-100">
+          <section className="py-24 ">
             <div className="container mx-auto px-4">
               <motion.h2
                 className="text-5xl font-bold text-center mb-16 text-gray-800"
@@ -131,7 +131,7 @@ export default function Home() {
                           <img
                             src={course.image}
                             alt={course.title}
-                            className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
+                            className="object-fill w-full h-[15rem] transition-transform duration-300 hover:scale-105"
                           />
                         </div>
                       </CardHeader>
@@ -181,39 +181,8 @@ export default function Home() {
               </div>
             </div>
           </section>
-          {/* Testimonial Section */}
-          <section className="py-20 bg-gray-100">
-            <div className="container mx-auto px-4">
-              <motion.h2
-                className="text-4xl font-bold text-center mb-12 "
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                Học viên nói gì về chúng tôi
-              </motion.h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                {[].map((testimonial, index) => (
-                  <MotionCard
-                    key={index}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.2 }}
-                  >
-                    <CardContent className="p-6">
-                      {/* <p className="text-lg mb-4">"{testimonial?.testimonial}"</p>
-                    <p className="font-semibold">{testimonial?.name}</p>
-                    <p className="text-sm text-gray-600">
-                      {testimonial?.course}
-                    </p> */}
-                    </CardContent>
-                  </MotionCard>
-                ))}
-              </div>
-            </div>
-          </section>
+      
 
-          {/* Call to Action */}
           <section className="bg-darkgreen  text-white py-20">
             <div className="container mx-auto px-4 text-center">
               <motion.h2

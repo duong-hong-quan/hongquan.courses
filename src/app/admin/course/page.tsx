@@ -1,260 +1,237 @@
-"use client";
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { BookPlus, Pencil, Trash2, Users } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Textarea } from "@/components/ui/textarea";
+'use client';
 
-// Define the Course type
-type Course = {
-  id: number;
-  name: string;
-  instructor: string;
-  duration: string;
-  status: "sắp khai giảng" | "đang diễn ra" | "đã kết thúc";
-  students: number;
-  description: string;
-};
+import { useEffect, useState } from 'react';
+import { useCourse } from '@/redux/hooks/useCourse';
+import { useAuth } from '@/redux/hooks/useAuth';
+import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { toast } from '@/hooks/use-toast';
+import { CreateCourseRequest } from '@/redux/types/course';
 
-const CourseManagement: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([
-    {
-      id: 1,
-      name: "Lập trình Web Frontend",
-      instructor: "Nguyễn Văn A",
-      duration: "3 tháng",
-      status: "đang diễn ra",
-      students: 25,
-      description: "Khóa học về HTML, CSS, JavaScript và React",
-    },
-    {
-      id: 2,
-      name: "Lập trình Python cơ bản",
-      instructor: "Trần Thị B",
-      duration: "2 tháng",
-      status: "sắp khai giảng",
-      students: 20,
-      description: "Khóa học lập trình Python cho người mới bắt đầu",
-    },
-  ]);
-
-  const [newCourse, setNewCourse] = useState<Omit<Course, "id">>({
-    name: "",
-    instructor: "",
-    duration: "",
-    status: "sắp khai giảng",
-    students: 0,
-    description: "",
+export default function CourseManagementPage() {
+  const { courses, isLoading, error, getCourses, addCourse, removeCourse, clearCourseError } = useCourse();
+  const { isAuthenticated } = useAuth();
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [formData, setFormData] = useState<CreateCourseRequest>({
+    courseName: '',
+    courseDescription: '',
+    courseType: 0,
+    mainImage: ''
   });
 
-  const [isAddDialogOpen, setIsAddDialogOpen] = useState<boolean>(false);
+  useEffect(() => {
+    if (isAuthenticated) {
+      getCourses();
+    }
+  }, [isAuthenticated, getCourses]);
 
-  const handleAddCourse = () => {
-    if (newCourse.name && newCourse.instructor) {
-      setCourses([
-        ...courses,
-        {
-          id: courses.length + 1,
-          ...newCourse,
-        },
-      ]);
-      setNewCourse({
-        name: "",
-        instructor: "",
-        duration: "",
-        status: "sắp khai giảng",
-        students: 0,
-        description: "",
+  useEffect(() => {
+    if (error) {
+      toast({
+        title: "Lỗi",
+        description: error,
+        variant: "destructive",
       });
-      setIsAddDialogOpen(false);
+      clearCourseError();
+    }
+  }, [error, clearCourseError]);
+
+  const handleCreateCourse = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.courseName || !formData.courseDescription) {
+      toast({
+        title: "Lỗi",
+        description: "Vui lòng điền đầy đủ thông tin",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const result = await addCourse(formData);
+    
+    if (result.meta.requestStatus === 'fulfilled') {
+      toast({
+        title: "Thành công",
+        description: "Khóa học đã được tạo thành công!",
+      });
+      setShowCreateForm(false);
+      setFormData({
+        courseName: '',
+        courseDescription: '',
+        courseType: 0,
+        mainImage: ''
+      });
     }
   };
 
-  const handleDeleteCourse = (id: number) => {
-    setCourses(courses.filter((course) => course.id !== id));
-  };
-
-  const getStatusColor = (status: Course["status"]): string => {
-    switch (status) {
-      case "đang diễn ra":
-        return "bg-green-500";
-      case "sắp khai giảng":
-        return "bg-blue-500";
-      case "đã kết thúc":
-        return "bg-gray-500";
-      default:
-        return "bg-gray-500";
+  const handleDeleteCourse = async (courseId: string) => {
+    if (confirm('Bạn có chắc chắn muốn xóa khóa học này?')) {
+      const result = await removeCourse(courseId);
+      
+      if (result.meta.requestStatus === 'fulfilled') {
+        toast({
+          title: "Thành công",
+          description: "Khóa học đã được xóa thành công!",
+        });
+      }
     }
   };
+
+  const courseTypes = [
+    { value: 0, label: 'Programming' },
+    { value: 1, label: 'Design' },
+    { value: 2, label: 'Business' },
+    { value: 3, label: 'Marketing' },
+  ];
 
   return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Quản lý Khóa học</h1>
-        <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-          <DialogTrigger asChild>
-            <Button className="flex items-center gap-2">
-              <BookPlus size={16} />
-              Thêm khóa học
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gray-50 p-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-between items-center mb-8">
+            <h1 className="text-3xl font-bold text-gray-900">Quản lý Khóa học</h1>
+            <Button onClick={() => setShowCreateForm(!showCreateForm)}>
+              {showCreateForm ? 'Hủy' : 'Thêm Khóa học'}
             </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-md">
-            <DialogHeader>
-              <DialogTitle>Thêm khóa học mới</DialogTitle>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div>
-                <Input
-                  placeholder="Tên khóa học"
-                  value={newCourse.name}
-                  onChange={(e) =>
-                    setNewCourse({ ...newCourse, name: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <Input
-                  placeholder="Giảng viên"
-                  value={newCourse.instructor}
-                  onChange={(e) =>
-                    setNewCourse({ ...newCourse, instructor: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <Input
-                  placeholder="Thời lượng (VD: 3 tháng)"
-                  value={newCourse.duration}
-                  onChange={(e) =>
-                    setNewCourse({ ...newCourse, duration: e.target.value })
-                  }
-                />
-              </div>
-              <div>
-                <Select
-                  value={newCourse.status}
-                  onValueChange={(value) =>
-                    setNewCourse({
-                      ...newCourse,
-                      status: value as Course["status"],
-                    })
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Trạng thái" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="sắp khai giảng">
-                      Sắp khai giảng
-                    </SelectItem>
-                    <SelectItem value="đang diễn ra">Đang diễn ra</SelectItem>
-                    <SelectItem value="đã kết thúc">Đã kết thúc</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <Input
-                  type="number"
-                  placeholder="Số lượng học viên"
-                  value={newCourse.students.toString()}
-                  onChange={(e) =>
-                    setNewCourse({
-                      ...newCourse,
-                      students: Number(e.target.value),
-                    })
-                  }
-                />
-              </div>
-              <div>
-                <Textarea
-                  placeholder="Mô tả khóa học"
-                  value={newCourse.description}
-                  onChange={(e) =>
-                    setNewCourse({ ...newCourse, description: e.target.value })
-                  }
-                />
-              </div>
-              <Button onClick={handleAddCourse}>Thêm khóa học</Button>
-            </div>
-          </DialogContent>
-        </Dialog>
-      </div>
+          </div>
 
-      <div className="border rounded-lg">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>ID</TableHead>
-              <TableHead>Tên khóa học</TableHead>
-              <TableHead>Giảng viên</TableHead>
-              <TableHead>Thời lượng</TableHead>
-              <TableHead>Trạng thái</TableHead>
-              <TableHead>Học viên</TableHead>
-              <TableHead className="text-right">Thao tác</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {courses.map((course) => (
-              <TableRow key={course.id}>
-                <TableCell>{course.id}</TableCell>
-                <TableCell className="font-medium">{course.name}</TableCell>
-                <TableCell>{course.instructor}</TableCell>
-                <TableCell>{course.duration}</TableCell>
-                <TableCell>
-                  <Badge className={getStatusColor(course.status)}>
-                    {course.status}
-                  </Badge>
-                </TableCell>
-                <TableCell>
-                  <div className="flex items-center gap-1">
-                    <Users size={16} />
-                    {course.students}
+          {/* Create Course Form */}
+          {showCreateForm && (
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle>Thêm Khóa học Mới</CardTitle>
+                <CardDescription>Điền thông tin khóa học</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleCreateCourse} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="courseName">Tên khóa học</Label>
+                      <Input
+                        id="courseName"
+                        value={formData.courseName}
+                        onChange={(e) => setFormData({ ...formData, courseName: e.target.value })}
+                        placeholder="Nhập tên khóa học"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="courseType">Loại khóa học</Label>
+                      <Select
+                        value={formData.courseType.toString()}
+                        onValueChange={(value) => setFormData({ ...formData, courseType: parseInt(value) })}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Chọn loại khóa học" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {courseTypes.map((type) => (
+                            <SelectItem key={type.value} value={type.value.toString()}>
+                              {type.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                </TableCell>
-                <TableCell className="text-right">
-                  <div className="flex justify-end gap-2">
-                    <Button variant="ghost" size="icon">
-                      <Pencil size={16} />
+                  <div>
+                    <Label htmlFor="courseDescription">Mô tả</Label>
+                    <Textarea
+                      id="courseDescription"
+                      value={formData.courseDescription}
+                      onChange={(e) => setFormData({ ...formData, courseDescription: e.target.value })}
+                      placeholder="Nhập mô tả khóa học"
+                      rows={4}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="mainImage">Hình ảnh chính</Label>
+                    <Input
+                      id="mainImage"
+                      value={formData.mainImage}
+                      onChange={(e) => setFormData({ ...formData, mainImage: e.target.value })}
+                      placeholder="URL hình ảnh"
+                    />
+                  </div>
+                  <div className="flex gap-2">
+                    <Button type="submit" disabled={isLoading}>
+                      {isLoading ? 'Đang tạo...' : 'Tạo khóa học'}
                     </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => handleDeleteCourse(course.id)}
+                    <Button 
+                      type="button" 
+                      variant="outline" 
+                      onClick={() => setShowCreateForm(false)}
                     >
-                      <Trash2 size={16} />
+                      Hủy
                     </Button>
                   </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
-    </div>
-  );
-};
+                </form>
+              </CardContent>
+            </Card>
+          )}
 
-export default CourseManagement;
+          {/* Courses List */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {isLoading ? (
+              <div className="col-span-full flex justify-center">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+              </div>
+            ) : courses.length === 0 ? (
+              <div className="col-span-full text-center py-8">
+                <p className="text-gray-500">Chưa có khóa học nào</p>
+              </div>
+            ) : (
+              courses.map((course) => (
+                <Card key={course.id}>
+                  <CardHeader>
+                    <CardTitle className="text-lg">{course.courseName}</CardTitle>
+                    <CardDescription>
+                      Loại: {courseTypes.find(t => t.value === course.courseType)?.label || 'Unknown'}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      {course.courseDescription}
+                    </p>
+                    {course.mainImage && (
+                      <div className="mb-4">
+                        <img 
+                          src={course.mainImage} 
+                          alt={course.courseName}
+                          className="w-full h-32 object-cover rounded"
+                        />
+                      </div>
+                    )}
+                    <div className="flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => {/* TODO: Edit functionality */}}
+                      >
+                        Sửa
+                      </Button>
+                      <Button 
+                        variant="destructive" 
+                        size="sm"
+                        onClick={() => handleDeleteCourse(course.id)}
+                      >
+                        Xóa
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </ProtectedRoute>
+  );
+} 
