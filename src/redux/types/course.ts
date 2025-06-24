@@ -13,6 +13,7 @@ export interface CourseEntity {
   isDeleted: boolean;
   deletedBy: string | null;
   deletedDate: string | null;
+  mainImage?: string;
 }
 
 // Pagination metadata

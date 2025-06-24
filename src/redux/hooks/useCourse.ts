@@ -27,9 +27,9 @@ export const useCourse = () => {
     });
   }, [course.courses.length, course.isLoading, course.currentCourse, course.error]);
 
-  const getCourses = useCallback(async () => {
-    console.log('useCourse: getCourses called');
-    const result = await dispatch(fetchCourses());
+  const getCourses = useCallback(async (params = {}) => {
+    console.log('useCourse: getCourses called', params);
+    const result = await dispatch(fetchCourses(params));
     console.log('useCourse: getCourses result:', result);
     return result;
   }, [dispatch]);

@@ -4,8 +4,27 @@ import { Bell, Search, User } from "lucide-react";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from 'next/navigation';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import { useCallback } from 'react';
+import api from '@/lib/axios';
 
 export function AppHeader() {
+  const router = useRouter();
+
+  // Logout handler
+  const handleLogout = useCallback(async () => {
+    try {
+      await api.post('/auth/logout');
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('isLogin');
+        window.location.href = '/login';
+      }
+    } catch (err) {
+      alert('Đăng xuất thất bại!');
+    }
+  }, []);
+
   return (
     <header className="z-10 flex h-16 items-center gap-4 border-b bg-background px-4 shadow-sm">
       <SidebarTrigger />
@@ -25,10 +44,19 @@ export function AppHeader() {
         <Bell className="h-5 w-5" />
         <span className="sr-only">Notifications</span>
       </Button>
-      <Button variant="ghost" size="icon">
-        <User className="h-5 w-5" />
-        <span className="sr-only">User menu</span>
-      </Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <User className="h-5 w-5" />
+            <span className="sr-only">User menu</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuItem onClick={() => router.push('/admin/profile')}>Xem hồ sơ</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem onClick={handleLogout}>Đăng xuất</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </header>
   );
 }

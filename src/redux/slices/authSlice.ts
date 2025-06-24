@@ -137,6 +137,9 @@ const authSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+    setAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload;
+    },
   },
   extraReducers: (builder) => {
     // Login
@@ -148,11 +151,14 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isAuthenticated = true;
-        state.user = action.payload.user;
-        // Don't store tokens in state - they're in cookies
+        state.user = null;
         state.token = null;
         state.refreshToken = null;
         state.error = null;
+        // Save isLogin to localStorage for persistence
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('isLogin', 'true');
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -171,6 +177,10 @@ const authSlice = createSlice({
         state.token = null;
         state.refreshToken = null;
         state.error = null;
+        // Remove isLogin from localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('isLogin');
+        }
       })
       .addCase(logoutUser.rejected, (state) => {
         state.isLoading = false;
@@ -202,9 +212,13 @@ const authSlice = createSlice({
         state.token = null;
         state.refreshToken = null;
         state.error = (action.payload as ApiError)?.message || 'Authentication check failed';
+        // Remove isLogin from localStorage
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('isLogin');
+        }
       });
   },
 });
 
-export const { clearError, setLoading } = authSlice.actions;
+export const { clearError, setLoading, setAuthenticated } = authSlice.actions;
 export default authSlice.reducer; 

@@ -14,15 +14,15 @@ import { mapCourseApiResponseToCourses, mapCourseEntityToCourse } from '@/lib/co
 // Async thunk for fetching all courses
 export const fetchCourses = createAsyncThunk<
   { courses: Course[]; pagination: any },
-  void,
+  any,
   { rejectValue: ApiError }
 >(
   'course/fetchCourses',
-  async (_, { rejectWithValue }) => {
+  async (params = {}, { rejectWithValue }) => {
     try {
       console.log('fetchCourses: fetching courses');
       
-      const response = await api.get<CourseApiResponse>('/course/all');
+      const response = await api.post<CourseApiResponse>('/course/all', params);
       console.log('fetchCourses: response received:', response.data);
       
       // Map API response to frontend format

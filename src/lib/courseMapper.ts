@@ -9,7 +9,7 @@ export function mapCourseEntityToCourse(entity: CourseEntity): Course {
     courseName: entity.courseName,
     courseDescription: entity.courseDescription,
     courseType: entity.courseType,
-    mainImage: '', // Default empty string since API doesn't provide this
+    mainImage: entity.mainImage || undefined,
     createdAt: entity.createDate,
     updatedAt: entity.updateDate !== '0001-01-01T00:00:00' ? entity.updateDate : undefined,
     isDeleted: entity.isDeleted,

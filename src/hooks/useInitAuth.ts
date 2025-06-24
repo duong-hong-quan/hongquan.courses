@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useAppDispatch } from '@/redux/hooks';
 import { checkAuthStatus } from '@/redux/slices/authSlice';
+import { useClient } from './use-client';
+import { useAppSelector } from '@/redux/hooks';
+import { setLoading } from '@/redux/slices/authSlice';
 
 let isInitialized = false;
 
@@ -8,6 +11,8 @@ export function useInitAuth() {
   const dispatch = useAppDispatch();
   const hasRun = useRef(false);
   const dispatchRef = useRef(dispatch);
+  const isClient = useClient();
+  const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
 
   // Update dispatch ref when it changes
   useEffect(() => {
@@ -15,6 +20,9 @@ export function useInitAuth() {
   }, [dispatch]);
 
   useEffect(() => {
+    // Only run on client side
+    if (!isClient) return;
+    
     // Prevent multiple initializations
     if (hasRun.current || isInitialized) {
       console.log('useInitAuth: Already initialized, skipping');
@@ -27,6 +35,13 @@ export function useInitAuth() {
     
     // Check if we're on the client side
     if (typeof window !== 'undefined') {
+      const isLogin = localStorage.getItem('isLogin');
+      if (isLogin === 'true' && !isAuthenticated) {
+        // Đánh dấu redux đã xác thực luôn
+        dispatchRef.current({ type: 'auth/setLoading', payload: false });
+        dispatchRef.current({ type: 'auth/setAuthenticated', payload: true });
+        return;
+      }
       const token = localStorage.getItem('token');
       const user = localStorage.getItem('user');
       
@@ -46,5 +61,7 @@ export function useInitAuth() {
         console.log('useInitAuth: No auth data found in localStorage');
       }
     }
-  }, []); // Empty dependency array - only run once on mount
+  }, [isClient, isAuthenticated]); // Add isClient, isAuthenticated to dependencies
+
+  return { isClient };
 } 

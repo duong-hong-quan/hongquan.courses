@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/redux/hooks/useAuth';
+import { useClient } from '@/hooks/use-client';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -15,20 +16,30 @@ export function ProtectedRoute({
 }: ProtectedRouteProps) {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
+  const isClient = useClient();
+  const [isLoginFlag, setIsLoginFlag] = useState<boolean | null>(null);
 
-  console.log('ProtectedRoute render:', { isAuthenticated, isLoading });
+  console.log('ProtectedRoute render:', { isAuthenticated, isLoading, isClient });
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setIsLoginFlag(localStorage.getItem('isLogin') === 'true');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return; // Don't redirect during SSR
+    
     console.log('ProtectedRoute: auth state changed:', { isAuthenticated, isLoading });
     // Redirect if not authenticated and not loading
     if (!isLoading && !isAuthenticated) {
       console.log('ProtectedRoute: redirecting to', redirectTo);
       router.push(redirectTo);
     }
-  }, [isAuthenticated, isLoading, router, redirectTo]);
+  }, [isAuthenticated, isLoading, router, redirectTo, isClient]);
 
-  // Show loading state while checking authentication
-  if (isLoading) {
+  // Show loading state while checking authentication or during SSR
+  if (isLoading || (isLoginFlag && !isAuthenticated) || !isClient) {
     console.log('ProtectedRoute: showing loading state');
     return (
       <div className="flex items-center justify-center min-h-screen">

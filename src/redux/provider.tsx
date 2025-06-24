@@ -1,19 +1,16 @@
 'use client';
 
 import { Provider } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { store } from './store';
+import { useClient } from '@/hooks/use-client';
 
 export function ReduxProvider({ children }: { children: React.ReactNode }) {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useClient();
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return <div>Loading...</div>;
-  }
-
-  return <Provider store={store}>{children}</Provider>;
+  // Always render the Provider, but conditionally render children
+  return (
+    <Provider store={store}>
+      {isClient ? children : <div style={{ visibility: 'hidden' }}>{children}</div>}
+    </Provider>
+  );
 } 

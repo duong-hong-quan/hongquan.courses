@@ -17,10 +17,16 @@ export default function LoginPage() {
   const router = useRouter();
   const { login, isLoading, error, isAuthenticated, clearAuthError } = useAuth();
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && localStorage.getItem('isLogin') === 'true') {
+      router.replace('/admin/');
+    }
+  }, [router]);
+
   // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/dashboard");
+      router.push("/admin/");
     }
   }, [isAuthenticated, router]);
 
@@ -55,7 +61,7 @@ export default function LoginPage() {
         title: "Đăng nhập thành công",
         description: "Chào mừng bạn trở lại!",
       });
-      router.push("/dashboard");
+      router.push("/admin/");
     }
   }
 
